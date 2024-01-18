@@ -1,0 +1,119 @@
+---
+import {
+Astronav,
+MenuItems,
+MenuIcon,
+Dropdown,
+DropdownItems,
+DropdownSubmenu,
+StickyHeader
+} from "astro-navbar";
+
+import Logo from "~/components/images/zwart_png.png"
+---
+
+<StickyHeader class="lg:flex lg:py-2 py-4 px-4 lg:items-center justify-between bg-[#e7e7e7] shadow-lg sticky top-0">
+    <Astronav closeOnClick>
+        <!-- <div class="flex items-center justify-between"> -->
+            <div class="flex justify-between ">
+                <a href="/" class="flex items-center font-[Agenta] gap-2 text-3xl font-bold transition-all duration-300 ease-in-out
+                hover:bg-gradient-to-r hover:from-black hover:via-[#007177]  hover:to-[#00ADB5] hover:bg-clip-text hover:text-transparent">
+                    <svg class="h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.9 38.41">
+                        <g id="Layer_2" data-name="Layer 2">
+                            <g id="zwart_icoon" data-name="zwart icoon">
+                                <path class="cls-1" d="M30.1,6.17,13.22.16A2.7,2.7,0,0,0,9.77,1.8l-9.61,27A2.71,2.71,0,0,0,1.8,32.24l16.87,6a2.71,2.71,0,0,0,3.46-1.64l9.61-27A2.7,2.7,0,0,0,30.1,6.17ZM11.44,26.73l-2.37-.81L8.3,28.2l-2.1-.72L7,25.21,4.59,24.4l.69-2,2.38.81.8-2.37,2.1.72-.8,2.36,2.36.81Zm5.31,4A1.69,1.69,0,1,1,18.44,29,1.69,1.69,0,0,1,16.75,30.69Zm3.84-1.79a1.69,1.69,0,1,1,1.69-1.68A1.69,1.69,0,0,1,20.59,28.9Zm3.47-5.69L7,17.11,12.15,2.5,29.26,8.59Z"/>
+                                <line class="cls-2" x1="11.67" y1="7.79" x2="16.46" y2="5.3"/>
+                                <line class="cls-2" x1="11.11" y1="10.75" x2="19.38" y2="6.67"/>
+                            </g>
+                        </g>
+                    </svg>
+                    GameShack
+                </a>
+                <MenuIcon class="block lg:hidden w-8 h-8  text-gray-800" />
+            </div>
+            <div class="">
+                <MenuItems class="hidden lg:flex">
+                    <ul class="flex lg:gap-4 lg:my-0 my-8 gap-16 flex-col text-3xl lg:text-lg lg:flex-row items-center">
+                        <li>
+                            <a href="/" class="group relative py-4 px-4 hover:text-[#00ADB5] transition-all ease-in-out duration-300">
+                                <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                                group-hover:w-full"></span>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/products/" class="group relative py-4 px-4 hover:text-[#00ADB5] transition-all ease-in-out duration-300">
+                                <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                                group-hover:w-full"></span>
+                                Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/contact/" class="group relative py-4 px-4 hover:text-[#00ADB5] transition-all ease-in-out duration-300">
+                                <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                                group-hover:w-full"></span>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </MenuItems>
+            </div>
+        <!-- </div> -->
+        <!-- <div class="flex w-full lg:w-auto items-center justify-between">
+            <a href="/" class="flex items-center gap-2 font-[Argenta] text-3xl font-bold text-[#222831] fill-[#222831] ease-in-out transition-all duration-300
+            hover:bg-gradient-to-r hover:from-black hover:via-[#007177]  hover:to-[#00ADB5] hover:bg-clip-text hover:text-transparent">
+                <svg class="w-10 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.9 38.41">
+                    <g id="Layer_2" data-name="Layer 2">
+                        <g id="zwart_icoon" data-name="zwart icoon">
+                            <path class="cls-1" d="M30.1,6.17,13.22.16A2.7,2.7,0,0,0,9.77,1.8l-9.61,27A2.71,2.71,0,0,0,1.8,32.24l16.87,6a2.71,2.71,0,0,0,3.46-1.64l9.61-27A2.7,2.7,0,0,0,30.1,6.17ZM11.44,26.73l-2.37-.81L8.3,28.2l-2.1-.72L7,25.21,4.59,24.4l.69-2,2.38.81.8-2.37,2.1.72-.8,2.36,2.36.81Zm5.31,4A1.69,1.69,0,1,1,18.44,29,1.69,1.69,0,0,1,16.75,30.69Zm3.84-1.79a1.69,1.69,0,1,1,1.69-1.68A1.69,1.69,0,0,1,20.59,28.9Zm3.47-5.69L7,17.11,12.15,2.5,29.26,8.59Z"/>
+                            <line class="cls-2" x1="11.67" y1="7.79" x2="16.46" y2="5.3"/>
+                            <line class="cls-2" x1="11.11" y1="10.75" x2="19.38" y2="6.67"/>
+                        </g>
+                    </g>
+                </svg>
+                GameShack
+            </a>
+            <div class="block lg:hidden p-8">
+                <MenuIcon class="w-8 h-8  text-gray-800" />
+            </div>
+        </div>
+        <MenuItems class="hidden lg:flex">
+            <ul class="flex gap-4 items-center">
+                <li><a href="">Home</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </MenuItems> -->
+       <!-- <MenuItems class="hidden lg:flex ">
+            <ul class="flex flex-col text-center text-lg lg:flex-row">
+                <li>
+                    <a href="/" 
+                    class="group relative inline-block overflow-hidden border px-8 py-2 font-medium text-[#222831] 
+                    hover:text-[#00ADB5] focus:outline-none">
+                        <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                        group-hover:w-full"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/products/"
+                    class="group relative inline-block overflow-hidden border px-8 py-2 font-medium text-[#222831] 
+                    hover:text-[#00ADB5] focus:outline-none ">
+                        <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                        group-hover:w-full"></span>
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="/contact/"
+                    class="group relative inline-block overflow-hidden border px-8 py-2 font-medium text-[#222831] 
+                    hover:text-[#00ADB5] focus:outline-none">
+                        <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                        group-hover:w-full"></span>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+       </MenuItems> -->
+    </Astronav>
+</StickyHeader>

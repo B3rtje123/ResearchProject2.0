@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Cards from "../components/Card.astro";
+import { ViewTransitions } from "astro:transitions";
+import { supabase } from '~/lib/supabase';
+
+const games = await supabase.from('game').select();
+console.log(games)
+
+
+---
+
+<Layout title="Products">
+    <section transition:animate="slide" 
+    class="flex flex-wrap gap-8 justify-center mt-8">
+        {
+            games.data.map((game) => (
+                <Cards
+                    id={game.id}
+                    image={game.image}
+                    title={game.title}
+                    consoles={game.consoles}
+                    price={game.price}
+                />
+            ))
+        }        
+    </section>
+</Layout>
