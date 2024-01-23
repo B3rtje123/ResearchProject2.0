@@ -22,10 +22,10 @@ if(Astro.request.method === 'POST') {
     const {data, error} = await supabase.from('cart').select().eq('title', details.title).single();
     
     if(data === null) {
-        totalPrice = Math.round(details.price);
+        totalPrice = Math.round(details.price).toFixed(2);
     }
     else{
-        totalPrice = Math.round(data.quantity * details.price + details.price);
+        totalPrice = Math.round(data.quantity * details.price + details.price).toFixed(2);
     }
     if(data === null) {
         await supabase

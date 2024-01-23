@@ -3,51 +3,110 @@ import CartItems from "~/components/CartItems.astro";
 import Layout from "../layouts/Layout.astro"
 import { supabase } from '~/lib/supabase';
 import { renderToStaticMarkup } from "react-dom/server";
+import DeleteBtn from "~/components/DeleteBtn.astro";
+import { object } from "astro/zod";
 const games = await supabase.from('cart').select();
-console.log(games.data);
+// console.log(games.data);
+const items = games.data;
+console.log(items)
 
-games.data.forEach(element => {
-    const totalPrice = element.price * element.quantity;
-});
+let counter = 0;
+
+let price = 0;
+for (const obj of items) {
+    counter++;
+    price = price + obj.Total_Price;
+}
 ---
 
 <Layout title="Cart">
-    <h1 class="mt-20">Cart</h1>
-    <div class="grid gap-4 grid-cols-2">
-        <div class="">
-            {
-                games.data.map((game) => (
-                    <CartItems
-                        id={game.id}
-                        image={game.image}
-                        title={game.title}
-                        consoles={game.consoles}
-                        price={game.price}
-                        quantity={game.quantity}
-                    />
-                ))
-            }
-        </div>
-        <div class="bg-[#cecece] rounded-lg p-8">
-            <h1>Checkout</h1>
-            {
-                games.data.map((game) => (
-                    <div class="grid grid-cols-4 justify-between text-sm">
-                        <p>{game.title}</p>
-                        <p>{game.price}</p>
-                        <p>{game.quantity}</p>
-                        <p>{game.Total_Price}</p>
-                    </div>
-                ))
-            }
-
-            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-
-            <div>
-                <p>total price: </p>
+    <div class="grid grid-cols-3 mt-20 min-h-screen">
+        <div class="col-span-2">
+            <!-- title -->
+            <div class="flex mx-8 justify-between">
+                <h1>Cart</h1>
+                <h1>Items in cart: { counter }</h1>
             </div>
+            <hr class="h-px mb-8 mx-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+            <!-- subtitles -->
+            <div class="grid grid-cols-5 mx-8">
+                <div class="col-span-2">
+                    <h4>Product Details</h4>
+                </div>
+                <div>
+                    <h4>Quantity</h4>
+                </div>
+                <div>
+                    <h4>Price</h4>
+                </div>
+                <div>
+                    <h4>Total price</h4>
+                </div>
+            </div>
+
+            <!-- items -->
+            {
+                items ? items.map((game) => (
+                    <div class="grid mx-8 grid-cols-5 h-40 overflow-hidden mb-4">
+                        <div class="flex gap-4 col-span-2">
+                            <img src={game.image} class="h-40 w-40 object-cover rounded-lg" alt={game.title + " - banner"}>
+                            <div class="flex flex-col justify-between">
+                                <div>
+                                    <h3>
+                                        {game.title}
+                                    </h3>
+                                    <p>{game.consoles.join(', ')}</p>
+                                </div>
+                                <DeleteBtn id={game.id} />
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center items-center">
+                            <p>{game.quantity}</p>
+                        </div>
+
+                        <div class="flex justify-center items-center">
+                            <p>€ {game.price}</p>
+                        </div>
+
+                        <div class="flex justify-center items-center">
+                            <p>€ {game.Total_Price}</p>
+                        </div>
+                    </div>
+                ))  : "no Content"
+            }
         </div>
 
+        <div class="">
+            <div class="mx-12 ">
+                <h1>Order Summary</h1>
+            </div>
+            <hr class="h-px mb-8 mx-8 bg-gray-200 border-0 dark:bg-gray-700">
+            <div class="mx-12 justify-center">
+                {
+                    items.map((game) => (
+                        <div class="grid grid-cols-4">
+                            <div class="col-span-2">
+                                <p>{game.title}</p>
+                            </div>
+                            <div class="flex justify-center">
+                                <p>x {game.quantity}</p>
+                            </div>
+                            <div class="flex justify-end">
+                                <p>€ {game.Total_Price}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                <div class="flex justify-between">
+                    <p>Total Price</p>
+                    <p>€ { price }</p>
+                </div>
+            </div>
+
+        </div>
     </div>
    
 

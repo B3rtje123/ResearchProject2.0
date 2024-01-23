@@ -1,0 +1,18 @@
+---
+import { supabase } from '~/lib/supabase';
+
+interface Props {
+	id: number;
+}
+
+const { id } = Astro.props;
+if(Astro.request.method === 'POST'){
+    await supabase.from('cart').delete().eq('id', id)
+}
+---
+
+<form method="post">
+    <button type="submit">
+        Clear cart
+    </button>
+</form>

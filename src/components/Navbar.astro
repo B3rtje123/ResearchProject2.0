@@ -8,8 +8,6 @@ DropdownItems,
 DropdownSubmenu,
 StickyHeader
 } from "astro-navbar";
-
-import Logo from "~/components/images/zwart_png.png"
 ---
 
 <StickyHeader class="lg:flex lg:py-2 py-4 px-4 lg:items-center justify-between bg-[#e7e7e7] shadow-lg absolute z-50 w-full top-0">
@@ -77,6 +75,13 @@ import Logo from "~/components/images/zwart_png.png"
                                 <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
                                 group-hover:w-full"></span>
                                 Contact
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/signin/" class="group relative py-4 px-4 hover:text-[#00ADB5] transition-all ease-in-out duration-300">
+                                <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-[#00ADB5] transition-all duration-200 
+                                group-hover:w-full"></span>
+                                Account
                             </a>
                         </li>
                     </ul>
