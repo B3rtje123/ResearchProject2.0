@@ -5,14 +5,13 @@ import { ViewTransitions } from "astro:transitions";
 import { supabase } from '~/lib/supabase';
 
 const games = await supabase.from('game').select();
-console.log(games)
-
-
+// console.log(games);
 ---
 
 <Layout title="Products">
-    <section transition:animate="slide" 
-    class="flex flex-wrap gap-8 justify-center mt-8">
+    <section 
+    transition:animate="none" 
+    class="flex flex-wrap gap-8 justify-center mt-28">
         {
             games.data.map((game) => (
                 <Cards

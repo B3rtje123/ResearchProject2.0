@@ -1,0 +1,54 @@
+---
+import CartItems from "~/components/CartItems.astro";
+import Layout from "../layouts/Layout.astro"
+import { supabase } from '~/lib/supabase';
+import { renderToStaticMarkup } from "react-dom/server";
+const games = await supabase.from('cart').select();
+console.log(games.data);
+
+games.data.forEach(element => {
+    const totalPrice = element.price * element.quantity;
+});
+---
+
+<Layout title="Cart">
+    <h1 class="mt-20">Cart</h1>
+    <div class="grid gap-4 grid-cols-2">
+        <div class="">
+            {
+                games.data.map((game) => (
+                    <CartItems
+                        id={game.id}
+                        image={game.image}
+                        title={game.title}
+                        consoles={game.consoles}
+                        price={game.price}
+                        quantity={game.quantity}
+                    />
+                ))
+            }
+        </div>
+        <div class="bg-[#cecece] rounded-lg p-8">
+            <h1>Checkout</h1>
+            {
+                games.data.map((game) => (
+                    <div class="grid grid-cols-4 justify-between text-sm">
+                        <p>{game.title}</p>
+                        <p>{game.price}</p>
+                        <p>{game.quantity}</p>
+                        <p>{game.Total_Price}</p>
+                    </div>
+                ))
+            }
+
+            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+            <div>
+                <p>total price: </p>
+            </div>
+        </div>
+
+    </div>
+   
+
+</Layout>
