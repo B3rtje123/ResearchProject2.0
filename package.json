@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
+    "@astrojs/preact": "^3.1.0",
     "@astrojs/react": "^3.0.9",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vue": "^4.0.8",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^18.2.18",
     "astro": "^4.1.2",
     "astro-navbar": "^2.3.0",
+    "preact": "^10.19.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "supabase": "^1.131.5",

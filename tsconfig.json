@@ -1,11 +1,13 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "react",
-    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "baseUrl": "D:/Research/ResearchProject2.0",
     "paths": {
-      "~/*": ["src/*"]
-    },
+      "~/*": [
+        "src/*"
+      ]
+    }
   }
 }

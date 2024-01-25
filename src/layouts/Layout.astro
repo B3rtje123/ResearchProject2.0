@@ -1,17 +1,14 @@
 ---
 import Navbar from '../components/Navbar.astro';
-import { ViewTransitions, fade } from "astro:transitions";
 import '@fontsource/poppins';
+import { ViewTransitions, fade } from 'astro:transitions';
 import { supabase } from '~/lib/supabase';
+import "../styles/transitions.css";
 
 interface Props {
 	title: string;
 }
-
 const { title } = Astro.props;
-const games = await supabase.from('game').select('id, title');
-
-// console.log(games.data[0])
 ---
 
 <!doctype html>
@@ -23,12 +20,11 @@ const games = await supabase.from('game').select('id, title');
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions/>
+		<ViewTransitions />
 	</head>
-	<!-- transition:animate={fade({ duration: '0.3s' })} -->
-	<body class="" >
-		<Navbar />
-		<div class="mx-4">
+	<body class=""  transition:animate="none">
+		<Navbar  />
+		<div class="mx-4"  >
 			<slot />
 		</div>
 	</body>

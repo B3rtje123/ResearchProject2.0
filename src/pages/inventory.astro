@@ -1,0 +1,31 @@
+---
+import { fade } from "astro:transitions";
+import Card from "~/components/Card.astro";
+import Layout from "~/layouts/Layout.astro";
+import { supabase } from "~/lib/supabase";
+
+const inv = await supabase.from('game').select();
+const products = inv.data;
+---
+
+<Layout title="Inventory">
+    <section class="mt-20 flex flex-wrap gap-4">
+        {
+            products.map((product) => (
+                <div class="relative">
+                    <Card 
+                        id={product.id}
+                        image={product.image}
+                        title={product.title}
+                        consoles={product.consoles}
+                        price={product.price}
+                    />
+
+                </div>
+
+                
+            ))
+        }
+    </section>
+
+</Layout>

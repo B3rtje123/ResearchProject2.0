@@ -1,4 +1,6 @@
 ---
+import { supabase } from '~/lib/supabase'
+
 interface Props {
 	
 	id: string
@@ -10,38 +12,27 @@ interface Props {
 }
 const { id, image, title, consoles, price } = Astro.props;
 ---
-
-<div class="h-auto flex justify-center mb-8">
-	<a href={'/details/' + id}
-	class="w-80 h-auto flex flex-col overflow-hidden rounded-lg 
-	bg-white border-2 border-gray-300 shadow-lg gap-4
-	transition-all ease-in-out duration-300
-	hover:shadow-xl hover:scale-110 ">
-		<div class="w-full h-80 overflow-hidden">
-			<img 
-				transition:animate="initial"
-				src={image} 
-				alt={title + ' - banner'}
-				class="w-full h-full object-cover"
-			>
+<div class="relative hover:scale-105 hover:border-[#00ADB5] ease-in-out transition-color duration-200">
+	<a 
+		href={`/details/${id}`} 
+		class="flex flex-col w-64 border-2 border-gray-300 rounded-lg relative shadow-lg ease-in-out transition-color duration-200 p-2
+		hover:text-[#00ADB5]
+		focus:scale-105 focus:ring-2 focus:outline-none focus:ring-[#00ADB5] focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-slate-300 focus:ring-offset-opacity-50"
+	>
+		<div
+			class="shadow-md hover:shadow-lg relative"
+			transition:name={`record-${id}`}
+		>
+			<img
+				class="block h-72 w-72 object-cover rounded-lg"
+				src={image}
+				alt={`${title} - cover`}
+				aria-hidden="true"
+			/>
 		</div>
-
-		<div class="mx-auto justify-center">
-			<h2
-				class="text-2xl font-bold text-center text-gray-800"
-			>
-				{title}
-			</h2>
-
-			<div class="flex gap-4 justify-center">
-				{consoles.map(console => (
-					<p class="text-gray-800 text-xs bg-slate-600/15 font-semibold rounded-full p-2">{console}</p>
-				))}
-			</div>
+		<div class="pt-4 pb-10 mx-2">
+			<p class="font-semibold mb-4">{title}</p>
+			<p >&euro; {price}</p>
 		</div>
-
-		<div class="mx-5 mt-8 mb-4">
-			<p>Price: <span>€{price}</span></p>
-		</div>
-	</a>        
+	</a>
 </div>
