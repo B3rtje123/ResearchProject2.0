@@ -52,8 +52,3 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## environment variable needed to acces DataBase
-
-URL=https://yorftifnwdxfjpbdstus.supabase.co
-SECRET_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvcmZ0aWZud2R4ZmpwYmRzdHVzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwNTUxNjkyMCwiZXhwIjoyMDIxMDkyOTIwfQ.hfEp7qoKpxHq_XEs8F88vem3pi1Hg4ogyESZbjGp6YQ
