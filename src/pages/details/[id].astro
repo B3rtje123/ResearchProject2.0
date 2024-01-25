@@ -1,6 +1,6 @@
 --- 
 import Layout from "../../layouts/Layout.astro";
-import { supabase } from '~/lib/supabase';
+import { supabase } from '../../lib/supabase';
 import Inventory from "../../components/DetailPage.vue";
 
 const { id } = Astro.params;
@@ -13,10 +13,10 @@ if(Astro.request.method === 'POST') {
     const {data, error} = await supabase.from('cart').select().eq('title', details.title).single();
     
     if(data === null) {
-        totalPrice = Math.round(details.price).toFixed(2);
+        totalPrice = details.price.toFixed(2);
     }
     else{
-        totalPrice = Math.round(data.quantity * details.price + details.price).toFixed(2);
+        totalPrice = data.quantity * details.price.toFixed(2) + details.price.toFixed(2);
     }
     if(data === null) {
         await supabase
@@ -35,7 +35,7 @@ if(Astro.request.method === 'POST') {
     else{
         await supabase
         .from('cart')
-        .update({ quantity: data.quantity + 1, Total_Price: totalPrice })
+        .update({ quantity: data.quantity + 1, Total_Price: data.quantity * details.price.toFixed(2) + details.price.toFixed(2) })
         .eq('title', details.title)
         .select();
         // console.log(error);

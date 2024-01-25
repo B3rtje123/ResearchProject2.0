@@ -1,9 +1,67 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import sendGrid from '@sendgrid/mail';
+
+sendGrid.setApiKey( import.meta.env.SENDGRID_API_KEY );
+
+if (Astro.request.method === 'POST') {
+  try{
+    // Getting posted data from our contact form
+    const data = await Astro.request.formData();
+    const name = data.get('name');
+    const email = data.get('email');
+    const message = data.get('message');
+
+    // TODO: Do not forget to do validation and error handling over received data from your contact form.
+
+    // Sending email
+    const msg: any = {
+        to: 'birdgamer516@gmail.com', // Change to your recipient
+        from: 'birdgamer516@gmail.com', // Change to your verified sender
+        replyTo: {
+            email:email as string, 
+            name:name as string
+            },
+        subject: `Contact form submission from ${name}`,
+        text: message,
+        html: `<p>${message}</p>`,
+    }
+    await sendGrid.send(msg).then(() => {
+      console.log('Email sent')
+    }).catch((error) => {
+      console.error(error)
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+}
 ---
 
-<Layout title="Contact">
-    <section >
-        <p>U can contact me here</p>
+<Layout title="GameShack - Contact">
+    <section class="flex mx-4 flex-col min-h-screen justify-center">
+        <form method="POST" class="flex mx-auto flex-col w-1/2 bg-white p-8 rounded-lg shadow-">
+
+            <h1 class="mb-4 text-center">Contact Us!</h1>
+            
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="ex.: John Doe" class="rounded-lg p-4 border-2 border-gray-200 shadow-md mb-8
+            focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" />
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="ex.: John@example.com" class="rounded-lg p-4 border-2 border-gray-200 shadow-md mb-8
+            focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" />
+            
+            <label for="message">Email</label>
+            <textarea name="message" placeholder="Type your message here...." class="rounded-lg p-4 border-2 border-gray-200 shadow-md mb-8
+            focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"></textarea>
+
+            <div class="flex ">
+                <button type="submit" class="bg-[#00ADB5] w-full text-white font-semibold py-4 w-2/3 rounded-lg transition-colors ease-in-out duration-300 text-lg
+                hover:bg-[#00acb5c2] focus:bg-[#00acb5c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    Send
+                </button>
+            </div>
+        </form>
     </section>
 </Layout>

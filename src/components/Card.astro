@@ -1,6 +1,4 @@
 ---
-import { supabase } from '~/lib/supabase'
-
 interface Props {
 	
 	id: string
@@ -30,7 +28,7 @@ const { id, image, title, consoles, price } = Astro.props;
 				aria-hidden="true"
 			/>
 		</div>
-		<div class="pt-4 pb-10 mx-2">
+		<div class="pt-4 pb-4 md:pb-10 mx-2">
 			<p class="font-semibold mb-4">{title}</p>
 			<p >&euro; {price}</p>
 		</div>
