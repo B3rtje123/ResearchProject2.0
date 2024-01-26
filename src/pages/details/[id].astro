@@ -44,6 +44,8 @@ if(Astro.request.method === 'POST') {
 ---
 
 <Layout title={'GameShack - ' + details.title}>
+    <div class="h-56 lg:w-76 w-56 lg:h-76 fixed bg-[#00ADB5] rounded-full -z-50 opacity-50 lg:-bottom-10 lg:-right-10 -bottom-8 -right-8" transition:name="blobA"></div>
+    <div class="h-56 lg:w-96 w-56 lg:h-96 bg-[#00ADB5] rounded-full -z-50 opacity-50 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed" transition:name="blobB"></div>
     <section class="block mt-20 lg:hidden"> 
             <!-- image -->
             <div class="mx-4 h-fit overflow-hidden drop-shadow-xl">
