@@ -10,10 +10,10 @@ console.log(items)
 let counter = 0;
 
 let price = 0;
-let fullPrice = '';
+let fullPrice;
 for (const obj of items) {
-    counter++;
-    price = price + obj.Total_Price;
+    counter += obj.quantity;
+    price += obj.price * obj.quantity;
     fullPrice = price.toFixed(2);
 }
 if(counter === 0){
@@ -22,7 +22,10 @@ if(counter === 0){
 ---
 <Layout title="GameShack - Cart">
     <section class="mx-4 block mt-24 lg:hidden">
-        <h1>Cart ({counter} items)</h1>
+        <div class="flex justify-between">
+            <h1>Cart</h1>
+            <h1>({counter} items)</h1>
+        </div>
         <hr class="h-px mt-2 mb-8 bg-gray-200 border-0 dark:bg-gray-700">
         {items.map((game) => (
             <div class="flex bg-gray-300 p-4 mb-2 rounded-3xl" transition:name={`record-${game.id}`}>

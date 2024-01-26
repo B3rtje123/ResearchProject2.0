@@ -12,14 +12,13 @@ if(Astro.request.method === 'POST'){
 ---
 
 <form method="post">
-    <button class='btn' type="submit">
-        Clear cart
-    </button>
+        <button class="btn" type="submit">
+                Clear cart
+        </button>
 </form>
 
 <script>
     document.querySelector(".btn").addEventListener("click", () => {
-        window.location.href = "/cart";
-        console.log("clicked");
+        window.location.reload();
     });
 </script>

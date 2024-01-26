@@ -1,7 +1,6 @@
 --- 
 import Layout from "../../layouts/Layout.astro";
 import { supabase } from '../../lib/supabase';
-import Inventory from "../../components/DetailPage.vue";
 
 const { id } = Astro.params;
 const games = await supabase.from('game').select().eq('id', id).single();
@@ -16,7 +15,7 @@ if(Astro.request.method === 'POST') {
         totalPrice = details.price.toFixed(2);
     }
     else{
-        totalPrice = data.quantity * details.price.toFixed(2) + details.price.toFixed(2);
+        totalPrice = data.quantity * details.price + details.price;
     }
     if(data === null) {
         await supabase
@@ -35,7 +34,7 @@ if(Astro.request.method === 'POST') {
     else{
         await supabase
         .from('cart')
-        .update({ quantity: data.quantity + 1, Total_Price: data.quantity * details.price.toFixed(2) + details.price.toFixed(2) })
+        .update({ quantity: data.quantity + 1, Total_Price: data.quantity * details.price + details.price })
         .eq('title', details.title)
         .select();
         // console.log(error);
@@ -45,25 +44,71 @@ if(Astro.request.method === 'POST') {
 ---
 
 <Layout title={'GameShack - ' + details.title}>
-    <section class="mt-20">
-        <div
-            class=""
-        >
-            <Inventory 
-                
-                id={details.id}
-                title={details.title}
-                price={details.price}
-                image={details.image}
-                consoles={details.consoles}
-            />
-        </div>
+    <section class="block mt-20 lg:hidden"> 
+            <!-- image -->
+            <div class="mx-4 h-fit overflow-hidden drop-shadow-xl">
+                <img class="object-cover h-80 w-full rounded-2xl" transition:name=`record-${details.id}` src={details.image} alt="">
+            </div>
+            <div class="mx-4 mt-4">
+                <!-- Title -->
+                <h2>{details.title}</h2>
+
+                <!-- price -->
+                <div class="flex justify-between items-center">
+                    <h4>&euro; {details.price}</h4>
+                    <form method="post" class="">
+                        <button type="submit" class="bg-gray-300 py-2 px-4 rounded-lg ease-in-out transition-color duration-300
+                        text-xl md:text-base
+                        hover:bg-gradient-to-br hover:from-gray-300 hover:to-[#00ADB5]">
+                            Add To Cart
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Console - tag -->
+                <div class="flex gap-4 mt-12 justify-center">
+                    {
+                        details.consoles.map((console) => (
+                            <p class="bg-gray-300 px-4 py-2 rounded-2xl opacity-80 text-sm">{console}</p>
+                        ))
+                    }
+                </div>
+
+                <!-- Description -->
+                <div class="">
+                    <p class="mt-4">{details.description}</p>
+                </div>
+            </div>
     </section>
 
-    <form method="post" class="">
-        <button type="submit" class="bg-gray-300 p-2 rounded-lg ease-in-out transition-color duration-00
-        hover:bg-gradient-to-br hover:from-gray-300 hover:to-[#00ADB5]">
-            Add To Cart
-        </button>
-    </form>
+    <section class="hidden mt-20 lg:block">
+        <div class="flex">
+            <!-- image -->
+            <img class="object-cover h-96 rounded-xl" transition:name=`record-${details.id}` src={details.image} alt="">
+            <div>
+                <!-- Title -->
+                <h2>{details.title}</h2>
+
+                <!-- Price -->
+                <h4>&euro; {details.price}</h4>
+            </div>
+        </div>
+
+        <!-- Console - tag -->
+        <div class="flex gap-4 mt-12 justify-center">
+            {
+                details.consoles.map((console) => (
+                    <p class="bg-gray-300 px-4 py-2 rounded-2xl opacity-80 text-sm">{console}</p>
+                ))
+            }
+        </div>
+
+        <!-- Description -->
+        <div class="mx-12">
+            <p class="mt-4">{details.description}</p>
+        </div>
+
+    </section>
+
+
 </Layout>

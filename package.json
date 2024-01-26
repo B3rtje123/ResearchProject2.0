@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
+    "@astrojs/netlify": "^5.0.0",
     "@astrojs/preact": "^3.1.0",
     "@astrojs/react": "^3.0.9",
     "@astrojs/tailwind": "^5.1.0",
@@ -24,17 +25,21 @@
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "astro": "^4.1.2",
+    "astro-bootstrap": "^0.6.2",
     "astro-navbar": "^2.3.0",
     "preact": "^10.19.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "resend": "^3.1.0",
     "supabase": "^1.131.5",
+    "swiper": "^11.0.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
-    "vue": "^3.4.14"
+    "vue": "^3.4.14",
+    "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
+    "sass": "^1.70.0",
     "tailwindcss-animated": "^1.0.1"
   }
 }

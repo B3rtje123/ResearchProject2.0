@@ -9,7 +9,10 @@ const products = inv.data;
 ---
 
 <Layout title="GameShack - Inventory">
-    <section class="mt-28 mx-4 md:mt-20 flex flex-wrap gap-4 justify-center">
+    <h1 class="mt-28 text-center">Have a look at our <span
+        class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-10% via-primary via-30% to-green-600"
+        >Inventory</span></h1>
+    <section class=" mx-4 md:mt-20 flex flex-wrap gap-4 justify-center">
         {
             products.map((product) => (
                 <div class="relative">
