@@ -13,7 +13,7 @@ const refreshToken = cookies.get("sb-refresh-token");
 ---
 
 <Layout title="GameShack - sign in">
-  <div class="flex mx-4 flex-col min-h-screen justify-center" transition:name="form">
+  <div class="hidden md:flex mx-4 flex-col min-h-screen justify-center" transition:name="form">
     <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-left-10 -bottom-8 -left-8" transition:name="blobA"></div>
     <div class="h-56 lg:w-72 w-56 lg:h-72 bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:top-0 lg:-right-10 top-4 -right-8 fixed" transition:name="blobB"></div>
     <h1 class="mb-4 text-center">Sign in</h1>
@@ -43,4 +43,38 @@ const refreshToken = cookies.get("sb-refresh-token");
     </form>
   </div>
 
+  <section class="flex md:hidden mx-4 min-h-screen items-center justify-center" transition:name="form">
+
+    <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-right-10 -bottom-8 -right-8" transition:name="blobA"></div>
+    <div class="h-56 lg:w-72 w-56 lg:h-72 bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:top-0 top-4 -left-8 fixed" transition:name="blobB"></div>
+
+    <form action="/api/auth/signin" method="post" class="mt-24 flex flex-col bg-white h-fit px-8 py-4 w-11/12 rounded-2xl gap-4">
+      <h1>Log in</h1>
+      <div class="flex flex-col">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="
+        rounded-lg py-2 px-4 border-gray-300 border shadow-md transition-all ease-out duration-300
+        focus:outline-none focus:ring-2 focus:ring-[#00ADB5]">
+      </div>
+
+      <div class="flex flex-col">
+        <label for="password" for="password">Password</label>
+        <input type="password" name="password" id="password" class="
+        rounded-lg py-2 px-4 border-gray-300 border shadow-md transition-all ease-out duration-300
+        focus:outline-none focus:ring-2 focus:ring-[#00ADB5]">
+      </div>
+
+      <button type="submit" class="bg-[#00ADB5] py-2 rounded-xl text-white font-semibold transition-colors ease-in-out duration-300 text-lg
+      hover:bg-[#00acb5c2] focus:bg-[#00acb5c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
+        Register
+      </button>  
+      <p class="text-center my-2">Or</p>
+      <button value="github" name="provider" type="submit" class="bg-[#840884] py-2 rounded-xl text-white font-semibold transition-colors ease-in-out duration-300 text-lg
+      hover:bg-[#840884c2] focus:bg-[#840884c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
+        Sign in with GitHub
+      </button>
+
+      <p class="flex mt-2">New here? <a href="/signin" class="text-blue-500 underline ml-2">Create an account</a></p>
+    </form>
+  </section>
 </Layout>
