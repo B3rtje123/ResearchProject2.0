@@ -7,7 +7,7 @@ const { cookies, redirect } = Astro;
 const { data, error } = await supabase.auth.getUser()
 
 if (data.user !== null) {
-    redirect("/login");
+  redirect("/login");
 }
 
 const email = data.user.email;
