@@ -1,5 +1,5 @@
 ---
-import { supabase } from "../lib/supabase";
+import { supabase } from "~/lib/supabase";
 import Layout from "../layouts/Layout.astro";
 
 const { cookies, redirect } = Astro;
@@ -13,10 +13,9 @@ if(data.user !== null) {
   return redirect("/account");
 }
 
-
-// if (accessToken && refreshToken) {
-//   return redirect("/dashboard");
-// }
+if (accessToken && refreshToken) {
+  return redirect("/account");
+}
 ---
 
 <Layout title="Sign in">
