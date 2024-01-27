@@ -1,5 +1,4 @@
 ---
-import { supabase } from "../lib/supabase";
 import Layout from "../layouts/Layout.astro";
 
 const { cookies, redirect } = Astro;
@@ -7,16 +6,10 @@ const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
-const {data, error} = await supabase.auth.getUser();
-console.log(data, error);
 
-if(data.user !== null) {
-  return redirect("/");
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
 }
-
-// if (accessToken && refreshToken) {
-//   return redirect("/account");
-// }
 ---
 
 <Layout title="Sign in">

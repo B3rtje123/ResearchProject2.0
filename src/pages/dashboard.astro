@@ -29,10 +29,13 @@ if (error) {
 
 const email = data?.user?.email;
 ---
-<Layout title="GameShack - dashboard">
-  <section class="mx-4">
-    <h1 class="mt-20">Welcome {email}</h1>
-    <p>We are happy to see you here</p>
+<Layout title="GameShack - Account">
+  <section class="mx-4 overflow-hidden mt-20">
+    <h1 class="">Account Information</h1>
+    <p>Email: {email}</p>
+
+    <h2>See Wishlist</h2>
+    <a href="/wishlist">Click me to see wishlist</a>
     <form action="/api/auth/signout">
       <button type="submit">Sign out</button>
     </form>
