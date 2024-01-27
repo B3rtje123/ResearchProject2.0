@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
-
+<!-- 
 <Layout title="GameShack - register">
   <div class="hidden md:flex mx-4 flex-col min-h-screen justify-center" transition:name="form">
     <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-left-10 -bottom-8 -left-8" transition:name="blobA"></div>
@@ -70,4 +70,16 @@ import Layout from "../layouts/Layout.astro";
       <p class="flex mt-2">Already have an account? <a href="/signin" class="text-blue-500 underline ml-2">Log in</a></p>
     </form>
   </section>
+</Layout> -->
+
+<Layout title="Register">
+  <h1>Register</h1>
+  <p>Already have an account? <a href="/signin">Sign in</a></p>
+  <form action="/api/auth/register" method="post">
+    <label for="email" for="email">Email</label>
+    <input type="email" name="email" id="email" />
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" />
+    <button type="submit">Login</button>
+  </form>
 </Layout>

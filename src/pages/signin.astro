@@ -1,18 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import TransitionAnimation from "../components/Transition"
 
 const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
-  if (accessToken && refreshToken) {
+if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
 ---
 
-<Layout title="GameShack - sign in">
+
+<Layout title="Sign in">
+  <h1>Sign in</h1>
+  <p>New here? <a href="/register">Create an account</a></p>
+  <form action="/api/auth/signin" method="post">
+    <label for="email" for="email">Email</label>
+    <input type="email" name="email" id="email" />
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" />
+    <button type="submit">Login</button>
+  </form>
+</Layout>
+
+
+<!-- <Layout title="GameShack - sign in">
   <div class="hidden md:flex mx-4 flex-col min-h-screen justify-center" transition:name="form">
     <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-left-10 -bottom-8 -left-8" transition:name="blobA"></div>
     <div class="h-56 lg:w-72 w-56 lg:h-72 bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:top-0 lg:-right-10 top-4 -right-8 fixed" transition:name="blobB"></div>
@@ -77,4 +90,4 @@ const refreshToken = cookies.get("sb-refresh-token");
       <p class="flex mt-2">New here? <a href="/register" class="text-blue-500 underline ml-2">Create an account</a></p>
     </form>
   </section>
-</Layout>
+</Layout> -->
