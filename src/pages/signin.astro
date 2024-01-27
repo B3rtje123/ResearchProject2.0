@@ -13,6 +13,10 @@ if (accessToken && refreshToken) {
 
 <Layout title="Sign in">
   <div class="flex flex-col min-h-screen justify-center items-center">
+
+    <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-left-10 -bottom-8 -left-8" transition:name="blobA"></div>
+    <div class="h-56 lg:w-72 w-56 lg:h-72 bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:top-0 top-4 -right-8 fixed" transition:name="blobB"></div>
+    
     <div class="bg-white py-4 px-8 w-3/4 max-w-lg rounded-lg shadow-lg">
       <h1 class="my-4">Sign in</h1>
       <form action="/api/auth/signin" method="post">
