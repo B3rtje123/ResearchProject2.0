@@ -9,13 +9,13 @@ const refreshToken = cookies.get("sb-refresh-token");
 
 const {data, error} = await supabase.auth.getUser();
 console.log(data, error);
-if(data.user !== null) {
+if(data.user !== null && accessToken && refreshToken) {
   return redirect("/");
 }
 
-if (accessToken && refreshToken) {
-  return redirect("/account");
-}
+// if (accessToken && refreshToken) {
+//   return redirect("/account");
+// }
 ---
 
 <Layout title="Sign in">
