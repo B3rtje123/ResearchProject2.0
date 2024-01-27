@@ -6,18 +6,14 @@ sendGrid.setApiKey( import.meta.env.SENDGRID_API_KEY );
 
 if (Astro.request.method === 'POST') {
   try{
-    // Getting posted data from our contact form
     const data = await Astro.request.formData();
     const name = data.get('name');
     const email = data.get('email');
     const message = data.get('message');
 
-    // TODO: Do not forget to do validation and error handling over received data from your contact form.
-
-    // Sending email
     const msg: any = {
-        to: 'birdgamer516@gmail.com', // Change to your recipient
-        from: 'birdgamer516@gmail.com', // Change to your verified sender
+        to: 'birdgamer516@gmail.com',
+        from: 'birdgamer516@gmail.com',
         replyTo: {
             email:email as string, 
             name:name as string
