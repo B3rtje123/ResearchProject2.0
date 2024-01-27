@@ -27,5 +27,5 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     path: "/",
   });
   console.log("Signed in")
-  return redirect("/dashboard");
+  return redirect("/account");
 };
