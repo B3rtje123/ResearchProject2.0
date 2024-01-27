@@ -1,85 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
-<!-- 
-<Layout title="GameShack - register">
-  <div class="hidden md:flex mx-4 flex-col min-h-screen justify-center" transition:name="form">
-    <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-left-10 -bottom-8 -left-8" transition:name="blobA"></div>
-    <div class="h-56 lg:w-72 w-56 lg:h-72 bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:top-0 lg:-right-10 top-4 -right-8 fixed" transition:name="blobB"></div>
-    <h1 class="mt-16 mb-4 text-center">Register</h1>
-    <form action="/api/auth/register" method="post" class="flex mx-auto flex-col w-1/2 bg-white p-8 rounded-lg">
-      
-      <label for="email1" for="email1">Email</label>
-      <input type="email" name="email1" id="email1" class="rounded-lg p-4 border-2 border-gray-200 shadow-md mb-8
-      focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" />
-      
-      <label for="password1" for="password1">Password</label>
-      <input type="password" name="password1" id="password1" 
-      class="rounded-lg p-4 border-2 border-gray-200 shadow-md mb-8
-      focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" />
-
-      <div class="flex justify-center">
-        <button type="submit" class="bg-[#00ADB5] text-white font-semibold py-4 w-2/3 rounded-lg transition-colors ease-in-out duration-300 text-lg
-        hover:bg-[#00acb5c2] focus:bg-[#00acb5c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
-        Register</button>
-      </div>
-      
-      <p class="text-center my-2">Or</p>
-      <div class="justify-center flex">
-        <button value="github" name="provider" type="submit" 
-        class="bg-[#840884] text-white font-semibold rounded-lg w-2/3 py-4 transition-colors ease-in-out duration-300
-        hover:bg-[#840884c4] focus:bg-[#840884c4] focus:outline-none focus:ring-2 focus:ring-gray-200">Sign in with GitHub</button>
-      </div>
-
-
-      <p class="flex mt-10">Already have an account? <a href="/signin" class="text-blue-500 underline ml-2">Log in</a></p>
-    </form>
-  </div>
-
-  <section class="flex md:hidden mx-4 min-h-screen items-center justify-center" transition:name="form">
-
-    <div class="h-56 lg:w-72 w-56 lg:h-72 fixed bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:-bottom-10 lg:-right-10 -bottom-8 -right-8" transition:name="blobA"></div>
-    <div class="h-56 lg:w-72 w-56 lg:h-72 bg-[#00ADB5] rounded-full -z-50 opacity-30 lg:top-0 top-4 -left-8 fixed" transition:name="blobB"></div>
-
-    <form action="/api/auth/register" method="post" class="mt-24 flex flex-col bg-white h-fit px-8 py-4 w-11/12 rounded-2xl gap-4">
-      <h1>Register</h1>
-      <div class="flex flex-col">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" class="
-        rounded-lg py-2 px-4 border-gray-300 border shadow-md transition-all ease-out duration-300
-        focus:outline-none focus:ring-2 focus:ring-[#00ADB5]">
-      </div>
-
-      <div class="flex flex-col">
-        <label for="password" for="password">Password</label>
-        <input type="password" name="password" id="password" class="
-        rounded-lg py-2 px-4 border-gray-300 border shadow-md transition-all ease-out duration-300
-        focus:outline-none focus:ring-2 focus:ring-[#00ADB5]">
-      </div>
-
-      <button type="submit" class="bg-[#00ADB5] py-2 rounded-xl text-white font-semibold transition-colors ease-in-out duration-300 text-lg
-      hover:bg-[#00acb5c2] focus:bg-[#00acb5c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
-        Register
-      </button>  
-      <p class="text-center my-2">Or</p>
-      <button value="github" name="provider" type="submit" class="bg-[#840884] py-2 rounded-xl text-white font-semibold transition-colors ease-in-out duration-300 text-lg
-      hover:bg-[#840884c2] focus:bg-[#840884c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
-        Sign in with GitHub
-      </button>
-
-      <p class="flex mt-2">Already have an account? <a href="/signin" class="text-blue-500 underline ml-2">Log in</a></p>
-    </form>
-  </section>
-</Layout> -->
 
 <Layout title="Register">
-  <h1>Register</h1>
-  <p>Already have an account? <a href="/signin">Sign in</a></p>
-  <form action="/api/auth/register" method="post">
-    <label for="email" for="email">Email</label>
-    <input type="email" name="email" id="email" />
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" />
-    <button type="submit">Login</button>
-  </form>
+<div class="flex flex-col min-h-screen justify-center items-center">
+  <div class="bg-white py-4 px-8 rounded-lg shadow-lg">
+    <h1 class="my-4">Register</h1>
+    <form action="/api/auth/register" method="post">
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col">
+          <label for="email" for="email">Email</label>
+          <input type="email" name="email" id="email" class="rounded-lg py-2 px-4 border-gray-300 border shadow-md transition-all ease-out duration-300
+          focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"/>
+        </div>
+  
+        <div class="flex flex-col">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="rounded-lg py-2 px-4 border-gray-300 border shadow-md transition-all ease-out duration-300
+          focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"/>
+        </div>
+  
+        <button type="submit" class="bg-[#00ADB5] py-2 rounded-xl text-white font-semibold transition-colors ease-in-out duration-300 text-lg
+        hover:bg-[#00acb5c2] focus:bg-[#00acb5c2] focus:outline-none focus:ring-2 focus:ring-gray-200">
+          Login
+        </button>
+      </div>
+    </form>
+    <p class="flex mt-2">Already have an account? <a href="/signin" class="text-blue-500 underline ml-2">Sign in</a></p>
+  </div>
+</div>
+
 </Layout>
