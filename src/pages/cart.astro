@@ -2,16 +2,40 @@
 import Layout from "../layouts/Layout.astro"
 import { supabase } from '../lib/supabase';
 import DeleteBtn from "../components/DeleteBtn.astro";
-const games = await supabase.from('cart').select();
-// console.log(games.data);
-const items = games.data;
-console.log(items)
+
+
+let user_id
+let is_User;
+let items;
+const {data, error} = await supabase.auth.getUser();
+
+if(error !== null){
+    user_id = "";
+    is_User = 0;
+    console.log('Not logged in', user_id);
+}
+if(data.user !== null){
+    user_id = data.user.id;
+    is_User = 1;
+    console.log('Logged in', user_id);
+}
+
+if(is_User === 1){
+    const games = await supabase.from('cart').select().eq('user_id', user_id).order('id', { ascending: true });
+    // console.log(games.error)
+    items = games.data;
+}
+
+if(is_User === 0){
+    const games = await supabase.from('cart').select().eq('is_User', is_User).order('id', { ascending: true });
+    // console.log(games.error)
+    items = games.data;
+}
 
 let counter = 0;
-
 let price = 0;
 let fullPrice;
-for (const obj of items) {
+for (let obj of items) {
     counter += obj.quantity;
     price += obj.price * obj.quantity;
     fullPrice = price.toFixed(2);

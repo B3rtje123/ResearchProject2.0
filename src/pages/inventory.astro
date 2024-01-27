@@ -3,6 +3,7 @@ import { fade } from "astro:transitions";
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase";
+import type { UserResponse } from "@supabase/supabase-js";
 
 const inv = await supabase.from('game').select();
 const products = inv.data;

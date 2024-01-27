@@ -4,42 +4,90 @@ import { supabase } from '../../lib/supabase';
 
 const { id } = Astro.params;
 const games = await supabase.from('game').select().eq('id', id).single();
-// console.log(games.data);
 const details = games.data;
+
+let user_id
+const {data, error} = await supabase.auth.getUser();
+console.log(data);
+
+if(error !== null){
+    user_id = null;
+    console.log('Not logged in', user_id);
+}
+if(data.user !== null){
+    user_id = data.user.id;
+    console.log('Logged in', user_id);
+}
+
 
 let totalPrice;
 if(Astro.request.method === 'POST') {
-    const {data, error} = await supabase.from('cart').select().eq('title', details.title).single();
+    if(data.user !== null){
+        const cart = await supabase.from('cart').select().eq('title', details.title).eq('user_id', user_id).single();
     
-    if(data === null) {
-        totalPrice = details.price.toFixed(2);
+        if(cart.data === null) {
+            totalPrice = details.price.toFixed(2);
+        }
+        else{
+            totalPrice = cart.data.quantity * details.price + details.price;
+        }
+
+        if(cart.data === null) {
+            await supabase
+            .from('cart')
+            .insert({ 
+                title: details.title, 
+                price: details.price, 
+                image: details.image, 
+                quantity: 1, 
+                consoles: details.consoles,
+                Total_Price: totalPrice,
+                user_id: user_id,
+                is_User: 1
+            })
+            console.log('clicked - logged in', user_id);
+        }
+        else{
+            await supabase
+            .from('cart')
+            .update({ quantity: cart.data.quantity + 1, Total_Price: cart.data.quantity * details.price + details.price })
+            .eq('title', details.title).eq('user_id', user_id)
+            console.log('updated - logged in');
+        }
+    }else{
+        const cart = await supabase.from('cart').select().eq('title', details.title).eq('is_User', 0).single();
+    
+        if(cart.data === null) {
+            totalPrice = details.price.toFixed(2);
+        }
+        else{
+            totalPrice = cart.data.quantity * details.price + details.price;
+        }
+
+        if(cart.data === null) {
+            await supabase
+            .from('cart')
+            .insert({ 
+                title: details.title, 
+                price: details.price, 
+                image: details.image, 
+                quantity: 1, 
+                consoles: details.consoles,
+                Total_Price: totalPrice,
+                user_id: null,
+                is_User: 0
+            })
+            console.log('clicked');
+        }
+        else{
+            await supabase
+            .from('cart')
+            .update({ quantity: cart.data.quantity + 1, Total_Price: cart.data.quantity * details.price + details.price })
+            .eq('title', details.title)
+            .eq('is_User', 0)
+            console.log('updated');
+        }
     }
-    else{
-        totalPrice = data.quantity * details.price + details.price;
-    }
-    if(data === null) {
-        await supabase
-        .from('cart')
-        .insert({ 
-            title: details.title, 
-            price: details.price, 
-            image: details.image, 
-            quantity: 1, 
-            consoles: details.consoles,
-            Total_Price: totalPrice
-        })
-        .select();
-        // console.log(error);
-    }
-    else{
-        await supabase
-        .from('cart')
-        .update({ quantity: data.quantity + 1, Total_Price: data.quantity * details.price + details.price })
-        .eq('title', details.title)
-        .select();
-        // console.log(error);
-    }
-    console.log(data);
 }
 ---
 
