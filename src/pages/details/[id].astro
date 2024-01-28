@@ -8,15 +8,15 @@ const details = games.data;
 
 let user_id
 const {data, error} = await supabase.auth.getUser();
-console.log(data);
+// console.log(data);
 
 if(error !== null){
     user_id = null;
-    console.log('Not logged in', user_id);
+    // console.log('Not logged in', user_id);
 }
 if(data.user !== null){
     user_id = data.user.id;
-    console.log('Logged in', user_id);
+    // console.log('Logged in', user_id);
 }
 
 

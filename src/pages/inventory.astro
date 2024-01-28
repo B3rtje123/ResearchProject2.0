@@ -1,12 +1,23 @@
 ---
-import { fade } from "astro:transitions";
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase";
-import type { UserResponse } from "@supabase/supabase-js";
 
 const inv = await supabase.from('game').select();
 const products = inv.data;
+
+let user_id
+const {data, error} = await supabase.auth.getUser();
+// console.log(data);
+
+if(error !== null){
+    user_id = null;
+}
+if(data.user !== null){
+    user_id = data.user.id;
+}
+
+
 ---
 
 <Layout title="GameShack - Inventory">
@@ -26,6 +37,7 @@ const products = inv.data;
                         title={product.title}
                         consoles={product.consoles}
                         price={product.price}
+                        user_id={user_id}
                     />
                 </div>
             ))

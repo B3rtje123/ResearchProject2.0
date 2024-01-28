@@ -1,4 +1,6 @@
 ---
+import { supabase } from '../lib/supabase'
+
 interface Props {
 	
 	id: string
@@ -6,9 +8,11 @@ interface Props {
 	title: string
 	consoles: string[]
 	price: number
-	
+	user_id: string
 }
-const { id, image, title, consoles, price } = Astro.props;
+const { id, image, title, consoles, price, user_id } = Astro.props;
+
+
 ---
 <div class="relative hover:scale-105 hover:border-[#00ADB5] ease-in-out transition-color duration-200">
 	<a 
@@ -34,5 +38,7 @@ const { id, image, title, consoles, price } = Astro.props;
 			<p class="font-semibold mb-4">{title}</p>
 			<p>&euro; {price}</p>
 		</div>
+
+
 	</a>
 </div>
