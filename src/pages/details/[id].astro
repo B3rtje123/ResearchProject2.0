@@ -93,13 +93,13 @@ if(Astro.request.method === 'POST') {
 ---
 
 <Layout title={'GameShack - ' + details.title}>
-    <div transition:name="blobA" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
-    <div transition:name="blobB" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
+    <!-- <div transition:name="blobA" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
+    <div transition:name="blobB" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div> -->
     
     <section class="block md:hidden"> 
             <!-- image -->
             <DetailImage id={details.id} image={details.image} title={details.title} />
-            <div class="mx-4 mt-4">
+            <div class="mx-4">
                 <!-- Title -->
                 <h2>{details.title}</h2>
 
@@ -132,14 +132,14 @@ if(Astro.request.method === 'POST') {
             </div>
     </section>
 
-    <section class="hidden mt-20 md:flex md:flex-col mx-4 ">
+    <section class="hidden md:flex md:flex-col mx-4 ">
         <div class="max-w-screen-3xl mx-auto">
             <div class="grid grid-cols-3 gap-4">
                 <!-- image -->
                 <DetailImage id={details.id} image={details.image} title={details.title} />
 
                 <!-- title -->
-                <h3 class="lg:text-4xl lg:font-semibold">{details.title}</h3>
+                <h3 class="lg:text-4xl lg:font-semibold mt-28">{details.title}</h3>
 
                 <form method="post" class="flex gap-4 flex-col justify-end items-end">
                     <!-- price -->

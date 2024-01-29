@@ -1,5 +1,5 @@
 <template>
-    <section class="block mt-20 md:hidden">
+    <section class="block md:hidden">
         <!-- image -->
         <div class="mx-4 h-fit overflow-hidden drop-shadow-xl">
             <img
