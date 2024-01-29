@@ -24,7 +24,7 @@ const { id, image, title, consoles, price, user_id } = Astro.props;
 		<div class="-bottom-48 -right-40 opacity-25 group-hover:opacity-0 -z w-80 h-80 absolute bg-[#00ADB5] rounded-full ease-in-out transition-opacity duration-200" ></div>
 		<div
 			class="shadow-md hover:shadow-lg relative"
-			transition:name={`record-${id}`}
+			transition:name=`record-${id}`
 		>
 		
 			<img
@@ -38,7 +38,5 @@ const { id, image, title, consoles, price, user_id } = Astro.props;
 			<p class="font-semibold mb-4">{title}</p>
 			<p>&euro; {price}</p>
 		</div>
-
-
 	</a>
 </div>

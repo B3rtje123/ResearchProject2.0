@@ -1,4 +1,5 @@
 --- 
+import DetailImage from "~/components/DetailImage.vue";
 import Icon from "../../components/Icon.astro";
 import Layout from "../../layouts/Layout.astro";
 import { supabase } from '../../lib/supabase';
@@ -95,11 +96,10 @@ if(Astro.request.method === 'POST') {
 <Layout title={'GameShack - ' + details.title}>
     <div transition:name="blobA" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
     <div transition:name="blobB" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
-    <section class="block mt-20 md:hidden"> 
+    
+    <section class="block md:hidden"> 
             <!-- image -->
-            <div class="mx-4 h-fit overflow-hidden drop-shadow-xl">
-                <img class="object-cover h-80 w-full rounded-2xl" transition:name=`record-${details.id}` src={details.image} alt="">
-            </div>
+            <DetailImage id={details.id} image={details.image} title={details.title} />
             <div class="mx-4 mt-4">
                 <!-- Title -->
                 <h2>{details.title}</h2>
@@ -137,8 +137,8 @@ if(Astro.request.method === 'POST') {
         <div class="max-w-screen-3xl mx-auto">
             <div class="grid grid-cols-3 gap-4">
                 <!-- image -->
-                <img class="object-cover h-80 w-full rounded-2xl xl:h-[700px]" src={details.image} alt="">
-              
+                <DetailImage id={details.id} image={details.image} title={details.title} />
+                
                 <!-- title -->
                 <h3 class="lg:text-4xl lg:font-semibold">{details.title}</h3>
 
