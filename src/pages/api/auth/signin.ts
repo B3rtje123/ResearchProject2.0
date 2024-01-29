@@ -26,6 +26,5 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
   });
-  console.log("Signed in")
   return redirect("/dashboard");
 };

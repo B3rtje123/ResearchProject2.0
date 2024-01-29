@@ -10,23 +10,19 @@ const {data, error} = await supabase.auth.getUser();
 if(error !== null){
     user_id = "";
     is_User = 0;
-    console.log('Not logged in', user_id);
 }
 if(data.user !== null){
     user_id = data.user.id;
     is_User = 1;
-    console.log('Logged in', user_id);
 }
 
 if(is_User === 1){
     const games = await supabase.from('cart').select().eq('user_id', user_id).order('id', { ascending: true });
-    // console.log(games.error)
     items = games.data;
 }
 
 if(is_User === 0){
     const games = await supabase.from('cart').select().eq('is_User', is_User).order('id', { ascending: true });
-    // console.log(games.error)
     items = games.data;
 }
 
