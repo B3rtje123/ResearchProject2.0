@@ -78,33 +78,33 @@ for (let obj of items) {
                 <MenuIcon class="block lg:hidden w-8 h-8" />
             </div>
             <div class="">
-                <MenuItems class="hidden lg:flex">
+                <MenuItems class="hidden lg:flex navbar">
                     <ul class="flex lg:gap-4 lg:my-0 my-8 gap-16 flex-col text-3xl lg:text-lg lg:flex-row items-center">
                         <li>
                             <a href="/" class="group relative py-4 px-4 hover:text-blue transition-all ease-in-out duration-300">
                                 <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-blue transition-all duration-200 
-                                group-hover:w-full group-active:w-full"></span>
+                                group-hover:w-full"></span>
                                 Home
                             </a>
                         </li>
                         <li>
                             <a href="/inventory/" class="group relative py-4 px-4 hover:text-blue transition-all ease-in-out duration-300">
                                 <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-blue transition-all duration-200 
-                                group-hover:w-full group-active:w-full"></span>
+                                group-hover:w-full"></span>
                                 Products
                             </a>
                         </li>
                         <li>
                             <a href="/contact/" class="group relative py-4 px-4 hover:text-blue transition-all ease-in-out duration-300">
-                                <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-blue transition-all duration-200 
-                                group-hover:w-full group-active:w-full"></span>
+                                <span class="underline ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-blue transition-all duration-200 
+                                group-hover:w-full"></span>
                                 Contact
                             </a>
                         </li>
                         <li>
                             <a href="/cart/" class="group relative py-4 px-4 hover:text-blue transition-all ease-in-out duration-300">
                                 <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-blue transition-all duration-200 
-                                group-hover:w-full group-active:w-full"></span>
+                                group-hover:w-full"></span>
                                 Cart
                                 <div class="absolute top-1.5 right-0.5 bg-blue rounded-full text-sm py-0.5 px-2 -z-10">
                                     {counter}
@@ -114,7 +114,7 @@ for (let obj of items) {
                         <li>
                             <a href="/signin/" class="group relative py-4 px-4 hover:text-blue transition-all ease-in-out duration-300">
                                 <span class="ease-in-out absolute bottom-0 left-0 h-0 w-0 border-b-2 border-blue transition-all duration-200 
-                                group-hover:w-full group-active:w-full"></span>
+                                group-hover:w-full"></span>
                                 Account
                             </a>
                         </li>
@@ -128,6 +128,21 @@ for (let obj of items) {
 .Logo:hover .cls-1{
     fill: url(#linear-gradient) #0e0e0e;
 }
-
+.navbar a.active{
+    background-color: blue;
+}
 </style>
+
+<script>
+    const nav = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.navbar a');
+    const currentURL = window.location.href;
+
+    navLinks.forEach(link => {
+        if(link.href === currentURL){
+            console.log(link.href);
+            link.classList.add('text-blue');
+        }
+    })
+</script>
 
