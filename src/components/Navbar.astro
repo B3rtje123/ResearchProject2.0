@@ -138,7 +138,7 @@ for (let obj of items) {
     const navLinks = document.querySelectorAll('.navbar a');
     const currentURL = window.location.href;
 
-    navLinks.forEach(link => {
+    navLinks.forEach((link : any) => {
         if(link.href === currentURL){
             console.log(link.href);
             link.classList.add('text-blue');
