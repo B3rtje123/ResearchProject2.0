@@ -1,4 +1,5 @@
 --- 
+import Icon from "../../components/Icon.astro";
 import Layout from "../../layouts/Layout.astro";
 import { supabase } from '../../lib/supabase';
 
@@ -92,8 +93,8 @@ if(Astro.request.method === 'POST') {
 ---
 
 <Layout title={'GameShack - ' + details.title}>
-    <div transition:name="blobA" class="h-56 lg:w-96 w-56 lg:h-96 bg-[#00ADB5] rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
-    <div transition:name="blobB" class="h-56 lg:w-96 w-56 lg:h-96 bg-[#00ADB5] rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
+    <div transition:name="blobA" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
+    <div transition:name="blobB" class="h-56 lg:w-96 w-56 lg:h-96 bg-blue rounded-full -z-50 opacity-20 lg:-bottom-12 lg:-right-16 -bottom-8 -right-8 fixed"></div>
     <section class="block mt-20 md:hidden"> 
             <!-- image -->
             <div class="mx-4 h-fit overflow-hidden drop-shadow-xl">
@@ -106,10 +107,11 @@ if(Astro.request.method === 'POST') {
                 <!-- price -->
                 <div class="flex justify-between items-center">
                     <h4>&euro; {details.price}</h4>
-                    <form method="post" class="">
-                        <button type="submit" class="bg-gray-300 py-2 px-4 rounded-lg ease-in-out transition-color duration-300
+                    <form method="post" class="mt-4">
+                        <button type="submit" class="bg-blue py-2 px-4 rounded-lg ease-in-out transition-color duration-300 text-white font-semibold
                         text-xl md:text-base
-                        hover:bg-gradient-to-br hover:from-gray-300 hover:to-[#00ADB5]">
+                        hover:bg-gradient-to-br hover:from-gray hover:to-blue
+                        active:scale-110">
                             Add To Cart
                         </button>
                     </form>
@@ -119,7 +121,7 @@ if(Astro.request.method === 'POST') {
                 <div class="flex gap-4 mt-12 justify-center">
                     {
                         details.consoles.map((console) => (
-                            <p class="bg-gray-300 px-4 py-2 rounded-2xl opacity-80 text-sm">{console}</p>
+                            <p class="bg-gray px-4 py-2 rounded-2xl opacity-80 text-sm">{console}</p>
                         ))
                     }
                 </div>
@@ -131,32 +133,48 @@ if(Astro.request.method === 'POST') {
             </div>
     </section>
 
-    <section class="hidden mt-20 md:block mx-4">
-        <div class="flex">
-            <!-- image -->
-            <img class="object-cover h-96 rounded-xl" transition:name=`record-${details.id}` src={details.image} alt="">
-            <div class="mx-4">
-                <!-- Title -->
-                <h2>{details.title}</h2>
+    <section class="hidden mt-20 md:flex md:flex-col mx-4 ">
+        <div class="max-w-screen-3xl mx-auto">
+            <div class="grid grid-cols-3 gap-4">
+                <!-- image -->
+                <img class="object-cover h-80 w-full rounded-2xl xl:h-[700px]" src={details.image} alt="">
+              
+                <!-- title -->
+                <h3 class="lg:text-4xl lg:font-semibold">{details.title}</h3>
 
-                <!-- Price -->
-                <h4>&euro; {details.price}</h4>
+                <form method="post" class="flex gap-4 flex-col justify-end items-end">
+                    <!-- price -->
+                    <p class="lg:text-3xl lg:font-semibold">&euro; {details.price}</p>
+                    <button type="submit" class="bg-blue py-2 px-4 rounded-lg ease-in-out transition-all duration-300 text-white font-semibold
+                    text-xl h-fit
+                    md:text-base lg:text-2xl
+                    focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-1
+                    hover:bg-blue/75 hover:ring-2 hover:ring-blue hover:ring-offset-1
+                    active:scale-110">
+                        Add To Cart 
+                    </button>
+                </form>
             </div>
         </div>
 
-        <!-- Console - tag -->
-        <div class="flex gap-4 mt-12 justify-center">
-            {
-                details.consoles.map((console) => (
-                    <p class="bg-gray-300 px-4 py-2 flex items-center justify-center rounded-2xl opacity-80 text-sm">{console}</p>
-                ))
-            }
+
+        <div class="max-w-screen-xl mx-auto">
+    
+            <!-- Console - tag -->
+            <div class="flex gap-4 mt-12 justify-center">
+                {
+                    details.consoles.map((console) => (
+                        <p class="bg-gray px-4 py-2 flex items-center justify-center rounded-2xl opacity-80 text-sm">{console}</p>
+                    ))
+                }
+            </div>
+    
+            <!-- Description -->
+            <div class="mx-12">
+                <p class="mt-4">{details.description}</p>
+            </div>
         </div>
 
-        <!-- Description -->
-        <div class="mx-12">
-            <p class="mt-4">{details.description}</p>
-        </div>
 
     </section>
 

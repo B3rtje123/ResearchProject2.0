@@ -2,13 +2,12 @@
 import Layout from "../layouts/Layout.astro"
 import { supabase } from '../lib/supabase';
 import DeleteBtn from "../components/DeleteBtn.astro";
-
+import Icon from "~/components/Icon.astro";
 
 let user_id
 let is_User;
 let items;
 const {data, error} = await supabase.auth.getUser();
-
 if(error !== null){
     user_id = "";
     is_User = 0;
@@ -52,9 +51,9 @@ if(counter === 0){
             <h1>Cart</h1>
             <h1>({counter} items)</h1>
         </div>
-        <hr class="h-px mt-2 mb-8 bg-gray-200 border-0 dark:bg-gray-700">
+        <hr class="h-px mt-2 mb-8 bg-black border-0 dark:bg-gray-700">
         {items.map((game) => (
-            <div class="flex bg-gray-300 p-4 mb-2 rounded-3xl" transition:name={`record-${game.id}`}>
+            <div class="flex bg-gray p-4 mb-2 rounded-3xl" transition:name={`record-${game.id}`}>
                 <div class="w-28 h-28 md:w-48 md:h-48 rounded-lg overflow-hidden">
                     <img src={game.image} alt={`${game.title} - cover`}
                     class="object-cover rounded-lg">
@@ -65,7 +64,8 @@ if(counter === 0){
                             <p class="font-semibold">{game.title}</p>
                             <p class="mb-4">&euro; {game.price}</p>
                         </div>
-                        <div class="flex justify-end md:justify-start">
+                        <div class="flex justify-center rounded-lg bg-white ease-in-out transition-all duration-200
+                        hover:text-red hover:font-semibold">
                             <DeleteBtn id={game.id} />
                         </div>
                     </div>
@@ -76,7 +76,7 @@ if(counter === 0){
         ))}
 
         <div class="justify-center flex">
-            <hr class="h-px w-4/5 mt-2 mb-4 bg-gray-200 border-0 dark:bg-gray-700">
+            <hr class="h-px w-4/5 mt-2 mb-4 bg-black/25 border-0 dark:bg-gray-700">
         </div>
     </section>
     <section class="flex justify-center mb-10 lg:hidden">
@@ -92,10 +92,10 @@ if(counter === 0){
                 <h1>Cart</h1>
                 <h1>({counter} items)</h1>
             </div>
-            <hr class="h-px mt-2 mb-8 bg-gray-200 border-0 dark:bg-gray-700">
+            <hr class="h-px mt-2 mb-8 bg-black border-0 dark:bg-gray-700">
             <section>
                 {items.map((game) => (
-                    <div class="flex bg-gray-300 p-4 mb-2 rounded-3xl" transition:name={`record-${game.id}`}>
+                    <div class="flex bg-gray p-4 mb-2 rounded-3xl" transition:name={`record-${game.id}`}>
                         <div class="w-28 h-28 md:w-48 md:h-48 rounded-lg overflow-hidden">
                             <img src={game.image} alt={`${game.title} - cover`}
                             class="object-cover h-full w-full rounded-lg">
@@ -107,7 +107,10 @@ if(counter === 0){
                                     <h3 class="mb-4">&euro; {game.price}</h3>
                                 </div>
                                 <div class="flex justify-end md:justify-start">
-                                    <DeleteBtn id={game.id} />
+                                    <div class="flex items-center gap-2 rounded-lg bg-white easse-in-out transition duration-300
+                                    hover:text-red hover:font-semibold">
+                                        <DeleteBtn id={game.id} />
+                                    </div>
                                 </div>
                             </div>
                             <h3 class="md:mx-8">x{game.quantity}</h3>
@@ -116,9 +119,9 @@ if(counter === 0){
                 ))}
             </section>
         </div>
-        <div class="min-h-screen w-full bg-gray-300 pt-24 px-4">
+        <div class="min-h-screen w-full bg-gray pt-24 px-4">
             <h1>Summary</h1>
-            <hr class="h-px mt-2 mb-8 bg-gray-200 border-0 dark:bg-gray-700">
+            <hr class="h-px mt-2 mb-8 bg-black border-0">
             {
                 items.map((game) => (
                     <div class="grid grid-cols-4 gap-2">
@@ -129,7 +132,7 @@ if(counter === 0){
                 ))
             }
             <div class="flex justify-center">
-                <hr class="h-px w-4/5 my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                <hr class="h-px w-4/5 my-8 bg-black/25 border-0">
             </div>
             <div class="flex justify-between">
                 <p>Total price:</p>

@@ -1,0 +1,13 @@
+---
+import Cart from "./Icons/Cart.astro"
+import Delete from "./Icons/Delete.astro"
+
+const iconMap = {
+  cart: Cart,
+  delete: Delete,
+}
+
+const IconComponent = iconMap[Astro.props.name]
+---
+
+<IconComponent  />

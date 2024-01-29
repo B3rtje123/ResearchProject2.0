@@ -2,6 +2,14 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
+		colors: {
+			black: '#0e0e0e',
+			white: '#ececec',
+			blue: '#00ADB5',
+			gray: '#D1D5DB',
+			red: '#FF0000',
+			ultraWhite: '#fff'
+		},
 		fontFamily: {
 			'Argenta': ['Argenta', 'sans-serif'],
 		},

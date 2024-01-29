@@ -1,5 +1,6 @@
 ---
 import { supabase } from '../lib/supabase';
+import Icon from './Icon.astro';
 
 interface Props {
 	id: number;
@@ -12,9 +13,10 @@ if(Astro.request.method === 'POST'){
 ---
 
 <form method="post">
-        <button class="btn" type="submit">
-                Clear cart
-        </button>
+    <button class="btn px-4 py-2 flex gap-2 items-center" type="submit">
+        Clear cart 
+        <Icon name="delete" />
+    </button>
 </form>
 
 <script>
