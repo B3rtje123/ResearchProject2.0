@@ -1,6 +1,5 @@
 --- 
-import DetailImage from "~/components/DetailImage.vue";
-import Icon from "../../components/Icon.astro";
+import DetailImage from "../../components/DetailImage.vue";
 import Layout from "../../layouts/Layout.astro";
 import { supabase } from '../../lib/supabase';
 
@@ -138,7 +137,7 @@ if(Astro.request.method === 'POST') {
             <div class="grid grid-cols-3 gap-4">
                 <!-- image -->
                 <DetailImage id={details.id} image={details.image} title={details.title} />
-                
+
                 <!-- title -->
                 <h3 class="lg:text-4xl lg:font-semibold">{details.title}</h3>
 
